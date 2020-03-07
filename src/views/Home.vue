@@ -27,7 +27,7 @@
       </div> -->
       <div class="row py-3">
         <div class="col-12">
-          <p>Try it out:</p>
+          <h5>Try it out:</h5>
         </div>
         <div class="col-12">
           <div class="row">
@@ -87,6 +87,7 @@ export default {
     //     })
     // },
     getTestResponse () {
+      this.testResponse = null
       this.testUrl = 'https://api.neko-atsume.emshea.com/' + this.testInput
       return axios
         .get(this.testUrl, {}
@@ -126,7 +127,7 @@ export default {
 }
 @media(max-width:767px){
   .main-container {
-    max-width: 80%;
+    max-width: 70%;
   }
 }
 @media(min-width:768px){
