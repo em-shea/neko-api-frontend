@@ -47,10 +47,10 @@
         </div>
       </div>
       <div class="row json">
-      <div class="col border">
-        <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
+        <div class="col border">
+          <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
+        </div>
       </div>
-    </div>
     <docs></docs>
     </div>
   </div>
