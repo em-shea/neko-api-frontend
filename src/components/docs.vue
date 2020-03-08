@@ -88,7 +88,7 @@ export default {
       catExample: { CatId: '1', CatName: 'Snowball', CatImage: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', MementoImage: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', CatDescription: 'Solid White', CatPersonality: 'Mellow', CatPowerLevel: '80', Memento: 'Flowered Collar', CatType: 'Common' },
       goodieExample: 'example goodie response',
       catData: [
-        { Name: 'CatId', Description: 'Id number of cat', Example: '1', Id: '1' },
+        { Name: 'CatId', Description: 'Id number of cat (1-66)', Example: '1', Id: '1' },
         { Name: 'CatName', Description: 'Name of the cat', Example: 'Snowball', Id: '2' },
         { Name: 'CatDescription', Description: 'Description of cat appearance', Example: 'Solid White', Id: '3' },
         { Name: 'CatPersonality', Description: 'Description of cat personality characteristics', Example: 'Mellow', Id: '4' },
@@ -110,9 +110,9 @@ export default {
 .docs-subheader {
   text-align: left;
 }
-.table-col {
+/* .col {
   padding: 0;
-}
+} */
 .row .table {
   width: unset;
 }

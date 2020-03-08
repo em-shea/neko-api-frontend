@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div class="container main-container">
+    <div class="container main-container px-0">
       <div class="row pt-5 pb-1">
         <div class="col">
           <h3>Neko Atsume API</h3>
@@ -30,7 +30,7 @@
           <h5>Try it out:</h5>
         </div>
         <div class="col-12">
-          <div class="row">
+          <div class="row input-group-desktop">
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
@@ -41,6 +41,18 @@
               </div>
             </div>
           </div>
+          <div class="row input-group-mobile">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend px-0 col-12">
+                <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
+              </div>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
+              </div>
+            </div>
+          </div>
+
           <div class="row">
             <p>Try <button class="btn btn-link test-options" v-on:click="testInput = 'cats/18', getTestResponse()">cats/18</button>, cats/pumpkin, goodies/10</p>
           </div>
@@ -122,16 +134,30 @@ export default {
 .test-options {
   padding: 0;
 }
+.input-group-mobile .input-group-text {
+  width: 100%
+}
+.input-group-mobile {
+    visibility: hidden;
+    display: none;
+}
 .main-container {
-  max-width: 65%;
+  max-width: 50%;
 }
 @media(max-width:767px){
   .main-container {
-    max-width: 70%;
+    max-width: 80%;
   }
 }
-@media(min-width:768px){
-
+@media(max-width:850px){
+  .input-group-desktop {
+    visibility: hidden;
+    display: none;
+  }
+  .input-group-mobile {
+    visibility: visible;
+    display: flex;
+  }
 }
 @media(min-width:992px){
 
