@@ -53,7 +53,7 @@
       <div class="row">
         <div class="col test-options">
           <p>Try
-            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/18', getTestResponse()"> cats/18</button>,
+            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/25', getTestResponse()"> cats/25 </button>,
             <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/pumpkin', getTestResponse()"> cats/pumpkin</button>,
             goodies/10.
           </p>
@@ -62,14 +62,14 @@
 
       <div class="row json">
         <div class="col scrollbar-y border mx-3">
-          <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
+          <tree-view :data="testResponse" :options="{maxDepth: 3, link: true}"></tree-view>
         </div>
       </div>
       <docs v-bind:cats="allCats"></docs>
       <hr>
       <div class="row">
         <div class="col footer">
-          <p>Made with ❤️ by <a href="emshea.com">Emily</a>.</p>
+          <p>Made with &hearts; by <a href="https://emshea.com">Emily</a>.</p>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@ export default {
       allCats: null,
       catImg: 'https://neko-atsume.s3.amazonaws.com/img/Pickles.jpg',
       catImgName: 'Pickles',
-      testInput: 'cats/4',
+      testInput: 'cats/9',
       testUrl: null,
       testResponse: null
     }

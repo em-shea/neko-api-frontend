@@ -7,26 +7,30 @@
         </div>
         <div class="row">
             <div class="col docs-subheader">
-                <h5>Overview</h5>
+                <h5><a href='#overview' id='overview' class="anchor-link">Overview</a></h5>
                 <p>Use this API to get data on cats and goodies from Neko Atsume: Kitty Collector.</p>
                 <p>This API is rate limited at 100 API requests per minute. Please feel free to <a href="mailto:neko@emshea.com">reach out</a> with questions.</p>
+                <ul>
+                  <li><a href="#cats">Cats</a></li>
+                  <li><a href="#goodies">Goodies</a></li>
+                </ul>
             </div>
         </div>
         <hr>
         <div class="row">
           <div class="col docs-subheader">
-              <h5>Cats</h5>
-              <p>Return data for cats from the game. There is an endpoint for all goodies and an endpoint that returns goodies by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info on cats.</p>
+              <h5><a href='#cats' id='cats' class="anchor-link">Cats</a></h5>
+              <p>Return data for cats from the game. There is an endpoint for all cats and an endpoint that returns cats by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info on cats.</p>
               <h6> GET /cats </h6>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
-                      <tree-view :data="cats" :options="{maxDepth: 3}"></tree-view>
+                      <tree-view :data="cats" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
               <h6>GET /cats/{id or name}</h6>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3">
-                      <tree-view :data="catExample" :options="{maxDepth: 3}"></tree-view>
+                      <tree-view :data="catExample" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
               <div class="row table-row py-3">
@@ -54,18 +58,18 @@
         <hr>
         <div class="row">
           <div class="col docs-subheader">
-              <h5>Goodies</h5>
+              <h5><a href='#goodies' id='goodies' class="anchor-link">Goodies</a></h5>
               <p>Returns data for goodies. There is an endpoint for all goodies and an endpoint that returns goodies by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Goodies">Neko Atsume wiki</a> for more info on goodies.</p>
               <h6>GET /goodies </h6>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
-                      <tree-view :data="allGoodies" :options="{maxDepth: 3}"></tree-view>
+                      <tree-view :data="allGoodies" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
               <h6>GET /goodies/{id or name}</h6>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3">
-                      <tree-view :data="goodieExample" :options="{maxDepth: 3}"></tree-view>
+                      <tree-view :data="goodieExample" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
               <div class="row table-row py-3">
@@ -127,6 +131,9 @@ export default {
 <style scoped>
 .docs-subheader {
   text-align: left;
+}
+.docs-subheader .anchor-link {
+  color: black;
 }
 .scrollbar-y {
   max-height: 212px;
