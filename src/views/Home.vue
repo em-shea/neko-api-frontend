@@ -2,6 +2,7 @@
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="container main-container px-0">
+
       <div class="row pt-5 pb-1">
         <div class="col">
           <h3>Neko Atsume API</h3>
@@ -31,16 +32,18 @@
               <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div class="row input-group-mobile">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend px-0 col">
-                <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
-              </div>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
-              </div>
+      <div class="row input-group-mobile">
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend px-0 col-12">
+              <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
+            </div>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
             </div>
           </div>
         </div>
@@ -61,13 +64,13 @@
           <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
         </div>
       </div>
-    <docs></docs>
-    <hr>
-    <div class="row">
-      <div class="col footer">
-        <p>Made with ❤️ by <a href="emshea.com">Emily</a>.</p>
+      <docs></docs>
+      <hr>
+      <div class="row">
+        <div class="col footer">
+          <p>Made with ❤️ by <a href="emshea.com">Emily</a>.</p>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -163,7 +166,7 @@ export default {
     max-width: 80%;
   }
 }
-@media(max-width:850px){
+@media(max-width:1000px){
   .input-group-desktop {
     visibility: hidden;
     display: none;
