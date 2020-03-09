@@ -6,7 +6,8 @@
       <div class="row pt-5 pb-1">
         <div class="col">
           <h3>Neko Atsume API</h3>
-          <img class="header-img" alt="Pickles" title="Pickles" src="https://neko-atsume.s3.amazonaws.com/img/Pickles.jpg">
+          <!-- Add button to click to change header cat img -->
+          <img class="header-img" v-bind:alt="catImgName" v-bind:title="catImgName" v-bind:src="catImg" v-on:click="switchCatImg()">
         </div>
       </div>
       <div class="row py-3">
@@ -64,7 +65,7 @@
           <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
         </div>
       </div>
-      <docs></docs>
+      <docs v-bind:cats="allCats"></docs>
       <hr>
       <div class="row">
         <div class="col footer">
@@ -86,7 +87,9 @@ export default {
   },
   data () {
     return {
-      cats: null,
+      allCats: null,
+      catImg: 'https://neko-atsume.s3.amazonaws.com/img/Pickles.jpg',
+      catImgName: 'Pickles',
       testInput: 'cats/4',
       testUrl: null,
       testResponse: null
@@ -94,17 +97,9 @@ export default {
   },
   mounted () {
     this.getTestResponse()
+    this.getCats()
   },
   methods: {
-    // getCats () {
-    //   return axios
-    //     .get('https://neko-atsume.emshea.com/api/cats', {}
-    //     )
-    //     .then((response) => {
-    //       this.cats = response.data
-    //       console.log(this.cats)
-    //     })
-    // },
     getTestResponse () {
       this.testResponse = 'loading...'
       this.testUrl = 'https://api.neko-atsume.emshea.com/' + this.testInput
@@ -117,6 +112,23 @@ export default {
           this.testResponse = 'Request failed.'
           console.log(error)
         })
+    },
+    getCats () {
+      this.allCats = 'loading...'
+      return axios
+        .get('https://api.neko-atsume.emshea.com/cats', {}
+        )
+        .then((response) => {
+          this.allCats = response.data
+        }).catch((error) => {
+          this.allCats = 'Request failed.'
+          console.log(error)
+        })
+    },
+    switchCatImg () {
+      const newCatIndex = Math.floor(Math.random() * Math.floor(43))
+      this.catImg = this.allCats[newCatIndex].CatImage
+      this.catImgName = this.allCats[newCatIndex].CatName
     }
   }
 }
@@ -132,6 +144,9 @@ export default {
 .header-img {
   width: 40px;
 }
+:hover.header-img {
+  cursor: pointer;
+}
 .cat-img {
   width: 40px;
 }
@@ -139,7 +154,7 @@ export default {
   text-align: left;
 }
 .scrollbar-y {
-  height: 212px;
+  max-height: 212px;
   overflow-y: auto;
 }
 .footer {

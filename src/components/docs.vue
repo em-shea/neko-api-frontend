@@ -20,7 +20,7 @@
               <h6> GET /cats </h6>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
-                      <tree-view :data="allCats" :options="{maxDepth: 3}"></tree-view>
+                      <tree-view :data="cats" :options="{maxDepth: 3}"></tree-view>
                   </div>
               </div>
               <h6>GET /cats/{id or name}</h6>
@@ -96,11 +96,11 @@
 <script>
 export default {
   name: 'docs',
+  props: ['cats'],
   data () {
     return {
       catExample: { CatId: '1', CatName: 'Snowball', CatImage: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', MementoImage: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', CatDescription: 'Solid White', CatPersonality: 'Mellow', CatPowerLevel: '80', Memento: 'Flowered Collar', CatType: 'Common' },
       goodieExample: 'example goodie response',
-      allCats: 'data for all cats',
       allGoodies: 'data for all goodies',
       catData: [
         { Name: 'CatId', Description: 'Id number of cat (1-66)', Example: '1', Id: '1' },
@@ -116,21 +116,9 @@ export default {
     }
   },
   mounted () {
-    this.getCats()
+
   },
   methods: {
-    getCats () {
-      this.allCats = 'loading...'
-      return axios
-        .get('https://api.neko-atsume.emshea.com/cats', {}
-        )
-        .then((response) => {
-          this.allCats = response.data
-        }).catch((error) => {
-          this.allCats = 'Request failed.'
-          console.log(error)
-        })
-    }
   }
 }
 </script>
@@ -141,7 +129,7 @@ export default {
   text-align: left;
 }
 .scrollbar-y {
-  height: 212px;
+  max-height: 212px;
   overflow-y: auto;
 }
 .row .table {
