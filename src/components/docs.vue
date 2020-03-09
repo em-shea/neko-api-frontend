@@ -29,11 +29,12 @@
               </div>
               <h6>GET /cats/{id or name}</h6>
               <div class="row json">
-                  <div class="col scrollbar-y border mx-3">
-                      <tree-view :data="catExample" :options="{maxDepth: 3, link: true}"></tree-view>
+                  <div class="col scrollbar-y border mx-3 mb-3">
+                      <tree-view :data="exampleCatResponse" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
-              <div class="row table-row py-3">
+              <h6>Cat resource definition</h6>
+              <div class="row table-row pb-3">
                 <div class="col table-col">
                   <table class="table table-responsive-md table-bordered">
                     <thead>
@@ -68,11 +69,12 @@
               </div>
               <h6>GET /goodies/{id or name}</h6>
               <div class="row json">
-                  <div class="col scrollbar-y border mx-3">
+                  <div class="col scrollbar-y border mx-3 mb-3">
                       <tree-view :data="goodieExample" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
-              <div class="row table-row py-3">
+              <h6>Goody resource definition</h6>
+              <div class="row table-row pb-3">
                 <div class="col table-col">
                   <table class="table table-responsive-md table-bordered">
                     <thead>
@@ -103,26 +105,29 @@ export default {
   props: ['cats'],
   data () {
     return {
-      catExample: { CatId: '1', CatName: 'Snowball', CatImage: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', MementoImage: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', CatDescription: 'Solid White', CatPersonality: 'Mellow', CatPowerLevel: '80', Memento: 'Flowered Collar', CatType: 'Common' },
       goodieExample: 'example goodie response',
       allGoodies: 'data for all goodies',
       catData: [
         { Name: 'CatId', Description: 'Id number of cat (1-66)', Example: '1', Id: '1' },
-        { Name: 'CatName', Description: 'Name of the cat', Example: 'Snowball', Id: '2' },
+        { Name: 'CatName', Description: 'Name of cat', Example: 'Snowball', Id: '2' },
         { Name: 'CatDescription', Description: 'Description of cat appearance', Example: 'Solid White', Id: '3' },
         { Name: 'CatPersonality', Description: 'Description of cat personality characteristics', Example: 'Mellow', Id: '4' },
         { Name: 'CatPowerLevel', Description: 'Power level of cat', Example: '80', Id: '5' },
-        { Name: 'Memento', Description: 'Memento item left by cat', Example: 'Flowered Collar', Id: '6' },
-        { Name: 'CatType', Description: 'Type of cat (rare or common)', Example: 'Common', Id: '7' },
+        { Name: 'CatType', Description: 'Type of cat (rare or common)', Example: 'Common', Id: '6' },
+        { Name: 'Memento', Description: 'Memento item left by cat', Example: 'Flowered Collar', Id: '7' },
         { Name: 'CatImage', Description: 'Link to cat image file', Example: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', Id: '8' },
         { Name: 'MementoImage', Description: 'Link to memento image file', Example: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', Id: '9' }
       ]
     }
   },
   mounted () {
-
   },
   methods: {
+  },
+  computed: {
+    exampleCatResponse: function () {
+      return this.cats[5]
+    }
   }
 }
 </script>
