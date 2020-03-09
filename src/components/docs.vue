@@ -16,62 +16,75 @@
         <div class="row">
           <div class="col docs-subheader">
               <h5>Cats</h5>
-              <p>This endpoint returns all cats from the game. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info.</p>
+              <p>Return data for cats from the game. There is an endpoint for all goodies and an endpoint that returns goodies by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info on cats.</p>
+              <h6> GET /cats </h6>
+              <div class="row json">
+                  <div class="col scrollbar-y border mx-3 mb-3">
+                      <tree-view :data="allCats" :options="{maxDepth: 3}"></tree-view>
+                  </div>
+              </div>
               <h6>GET /cats/{id or name}</h6>
               <div class="row json">
-                  <div class="col border">
+                  <div class="col scrollbar-y border mx-3">
                       <tree-view :data="catExample" :options="{maxDepth: 3}"></tree-view>
                   </div>
               </div>
               <div class="row table-row py-3">
                 <div class="col table-col">
                   <table class="table table-responsive-md table-bordered">
-                        <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Description</th>
-                              <th scope="col">Example</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in catData" :key="item.Id">
-                              <td>{{ item.Name }}</td>
-                              <td>{{ item.Description }}</td>
-                              <td>{{ item.Example }}</td>
-                            </tr>
-                        </tbody>
+                    <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in catData" :key="item.Id">
+                          <td>{{ item.Name }}</td>
+                          <td>{{ item.Description }}</td>
+                          <td>{{ item.Example }}</td>
+                        </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
             </div>
         </div>
+        <hr>
         <div class="row">
-            <div class="col docs-subheader">
-                <h5>Goodies</h5>
-                <p>This endpoint returns all goodies from the game. See <a href="https://nekoatsume.fandom.com/wiki/Goodies">Neko Atsume wiki</a> for more info.</p>
-                <h6>GET /goodies/{id or name}</h6>
-                <div class="row json">
-                    <div class="col border">
-                        <tree-view :data="goodieExample" :options="{maxDepth: 3}"></tree-view>
-                    </div>
-                </div>
+          <div class="col docs-subheader">
+              <h5>Goodies</h5>
+              <p>Returns data for goodies. There is an endpoint for all goodies and an endpoint that returns goodies by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Goodies">Neko Atsume wiki</a> for more info on goodies.</p>
+              <h6>GET /goodies </h6>
+              <div class="row json">
+                  <div class="col scrollbar-y border mx-3 mb-3">
+                      <tree-view :data="allGoodies" :options="{maxDepth: 3}"></tree-view>
+                  </div>
+              </div>
+              <h6>GET /goodies/{id or name}</h6>
+              <div class="row json">
+                  <div class="col scrollbar-y border mx-3">
+                      <tree-view :data="goodieExample" :options="{maxDepth: 3}"></tree-view>
+                  </div>
+              </div>
               <div class="row table-row py-3">
                 <div class="col table-col">
                   <table class="table table-responsive-md table-bordered">
-                        <thead>
-                            <tr>
-                              <th scope="col">Name</th>
-                              <th scope="col">Description</th>
-                              <th scope="col">Example</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in catData" :key="item.Id">
-                              <td>{{ item.Name }}</td>
-                              <td>{{ item.Description }}</td>
-                              <td>{{ item.Example }}</td>
-                            </tr>
-                        </tbody>
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Example</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="item in catData" :key="item.Id">
+                        <td>{{ item.Name }}</td>
+                        <td>{{ item.Description }}</td>
+                        <td>{{ item.Example }}</td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -87,6 +100,8 @@ export default {
     return {
       catExample: { CatId: '1', CatName: 'Snowball', CatImage: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', MementoImage: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', CatDescription: 'Solid White', CatPersonality: 'Mellow', CatPowerLevel: '80', Memento: 'Flowered Collar', CatType: 'Common' },
       goodieExample: 'example goodie response',
+      allCats: 'data for all cats',
+      allGoodies: 'data for all goodies',
       catData: [
         { Name: 'CatId', Description: 'Id number of cat (1-66)', Example: '1', Id: '1' },
         { Name: 'CatName', Description: 'Name of the cat', Example: 'Snowball', Id: '2' },
@@ -94,13 +109,28 @@ export default {
         { Name: 'CatPersonality', Description: 'Description of cat personality characteristics', Example: 'Mellow', Id: '4' },
         { Name: 'CatPowerLevel', Description: 'Power level of cat', Example: '80', Id: '5' },
         { Name: 'Memento', Description: 'Memento item left by cat', Example: 'Flowered Collar', Id: '6' },
-        { Name: 'CatType', Description: 'Type of cat - rare or common', Example: 'Common', Id: '7' },
+        { Name: 'CatType', Description: 'Type of cat (rare or common)', Example: 'Common', Id: '7' },
         { Name: 'CatImage', Description: 'Link to cat image file', Example: 'https://neko-atsume.s3.amazonaws.com/img/Snowball.jpg', Id: '8' },
         { Name: 'MementoImage', Description: 'Link to memento image file', Example: 'https://neko-atsume.s3.amazonaws.com/img/Flowered+Collar.jpg', Id: '9' }
       ]
     }
   },
+  mounted () {
+    this.getCats()
+  },
   methods: {
+    getCats () {
+      this.allCats = 'loading...'
+      return axios
+        .get('https://api.neko-atsume.emshea.com/cats', {}
+        )
+        .then((response) => {
+          this.allCats = response.data
+        }).catch((error) => {
+          this.allCats = 'Request failed.'
+          console.log(error)
+        })
+    }
   }
 }
 </script>
@@ -110,9 +140,10 @@ export default {
 .docs-subheader {
   text-align: left;
 }
-/* .col {
-  padding: 0;
-} */
+.scrollbar-y {
+  height: 212px;
+  overflow-y: auto;
+}
 .row .table {
   width: unset;
 }

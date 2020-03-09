@@ -11,59 +11,63 @@
       <div class="row py-3">
         <div class="col">
           <p>Get data on cats and goodies from <a href="https://www.nekoatsume.com/en/">Neko Atsume: Kitty Collector</a>.</p>
-          <!-- <p><a href="#docs">Docs</a></p> -->
         </div>
       </div>
-      <!-- Need to add scroll spy? -->
-      <!-- <div class="row py-3">
-        <div class="col">
-          <div v-for="cat in this.cats" :key="cat.CatId">
-            {{ cat.CatName }}
-            <div>
-              <img class="cat-img" v-bind:src="cat.CatImage">
-            </div>
-          </div>
-        </div>
-      </div> -->
+
       <div class="row py-3">
-        <div class="col-12">
+        <div class="col">
           <h5>Try it out:</h5>
         </div>
-        <div class="col-12">
-          <div class="row input-group-desktop">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
-              </div>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
-              </div>
+      </div>
+
+      <div class="row input-group-desktop">
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
             </div>
-          </div>
-          <div class="row input-group-mobile">
-            <div class="input-group mb-3">
-              <div class="input-group-prepend px-0 col-12">
-                <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
-              </div>
-              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
-              </div>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
             </div>
           </div>
 
-          <div class="row">
-            <p>Try <button class="btn btn-link test-options" v-on:click="testInput = 'cats/18', getTestResponse()">cats/18</button>, cats/pumpkin, goodies/10</p>
+          <div class="row input-group-mobile">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend px-0 col">
+                <span class="input-group-text" id="basic-addon3">https://api.neko-atsume.emshea.com/</span>
+              </div>
+              <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" v-model="testInput">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="getTestResponse()">Submit</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col test-options">
+          <p>Try
+            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/18', getTestResponse()"> cats/18</button>,
+            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/pumpkin', getTestResponse()"> cats/pumpkin</button>,
+            goodies/10.
+          </p>
+        </div>
+      </div>
+
       <div class="row json">
-        <div class="col border">
+        <div class="col scrollbar-y border mx-3">
           <tree-view :data="testResponse" :options="{maxDepth: 3}"></tree-view>
         </div>
       </div>
     <docs></docs>
+    <hr>
+    <div class="row">
+      <div class="col footer">
+        <p>Made with ❤️ by <a href="emshea.com">Emily</a>.</p>
+      </div>
+    </div>
     </div>
   </div>
 </template>
@@ -99,7 +103,7 @@ export default {
     //     })
     // },
     getTestResponse () {
-      this.testResponse = null
+      this.testResponse = 'loading...'
       this.testUrl = 'https://api.neko-atsume.emshea.com/' + this.testInput
       return axios
         .get(this.testUrl, {}
@@ -131,7 +135,17 @@ export default {
 .json {
   text-align: left;
 }
+.scrollbar-y {
+  height: 212px;
+  overflow-y: auto;
+}
+.footer {
+  text-align: left;
+}
 .test-options {
+  text-align: left;
+}
+.test-options-btn {
   padding: 0;
 }
 .input-group-mobile .input-group-text {
