@@ -55,7 +55,8 @@
           <p>Try
             <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/25', getTestResponse()"> cats/25 </button>,
             <button class="btn btn-link test-options-btn" v-on:click="testInput = 'cats/pumpkin', getTestResponse()"> cats/pumpkin</button>,
-            goodies/10.
+            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'goodies/17', getTestResponse()"> goodies/17</button>, or
+            <button class="btn btn-link test-options-btn" v-on:click="testInput = 'goodies/kotatsu', getTestResponse()"> goodies/kotatsu</button>.
           </p>
         </div>
       </div>
@@ -65,7 +66,7 @@
           <tree-view :data="testResponse" :options="{maxDepth: 3, link: true}"></tree-view>
         </div>
       </div>
-      <docs v-bind:cats="allCats"></docs>
+      <docs v-bind:cats="allCats" v-bind:goodies="allGoodies"></docs>
       <hr>
       <div class="row">
         <div class="col footer">
@@ -88,6 +89,7 @@ export default {
   data () {
     return {
       allCats: null,
+      allGoodies: null,
       catImg: 'https://neko-atsume.s3.amazonaws.com/img/Pickles.jpg',
       catImgName: 'Pickles',
       testInput: 'cats/9',
@@ -98,6 +100,7 @@ export default {
   mounted () {
     this.getTestResponse()
     this.getCats()
+    this.getGoodies()
   },
   methods: {
     getTestResponse () {
@@ -125,19 +128,28 @@ export default {
           console.log(error)
         })
     },
+    getGoodies () {
+      this.allGoodies = 'loading...'
+      return axios
+        .get('https://api.neko-atsume.emshea.com/goodies', {}
+        )
+        .then((response) => {
+          this.allGoodies = response.data
+        }).catch((error) => {
+          this.allGoodies = 'Request failed.'
+          console.log(error)
+        })
+    },
     switchCatImg () {
       const newCatIndex = Math.floor(Math.random() * Math.floor(43))
       this.catImg = this.allCats[newCatIndex].CatImage
       this.catImgName = this.allCats[newCatIndex].CatName
+      this.testInput = 'cats/' + (newCatIndex + 1)
+      this.getTestResponse()
     }
   }
 }
 
-// axios.get('/user/1').then((response) => {
-//     console.log('Everything is awesome.');
-// }).catch((error) => {
-//     console.warn('Not good man :(');
-// })
 </script>
 
 <style scoped>
