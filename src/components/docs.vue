@@ -142,14 +142,18 @@ export default {
   },
   computed: {
     exampleCatResponse: function () {
-      if (typeof this.cats === 'string') {
+      if (this.cats === null) {
+        return 'loading...'
+      } else if (typeof this.cats === 'string') {
         return this.cats
       } else {
         return this.cats[24]
       }
     },
     exampleGoodyResponse: function () {
-      if (typeof this.goodies === 'string') {
+      if (this.goodies === null) {
+        return 'loading...'
+      } else if (typeof this.goodies === 'string') {
         return this.goodies
       } else {
         return this.goodies[10]
