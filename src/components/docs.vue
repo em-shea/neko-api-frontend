@@ -20,8 +20,9 @@
         <div class="row">
           <div class="col docs-subheader">
               <h5><a href='#cats' id='cats' class="anchor-link">Cats</a></h5>
-              <p>Return data for cats from the game. There is an endpoint for all cats and an endpoint that returns cats by id or by name. Valid ids are between 1-66. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info on cats.</p>
+              <p>Return data for cats from the game. See <a href="https://nekoatsume.fandom.com/wiki/Cats">Neko Atsume wiki</a> for more info on cats.</p>
               <h6> GET /cats </h6>
+              <p> This endpoint lists all cats.</p>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
                       <!-- TODO: Create json viewer component -->
@@ -29,6 +30,7 @@
                   </div>
               </div>
               <h6>GET /cats/{id or name}</h6>
+              <p> This endpoint returns a cat for a given id or name. Valid ids are between 1-66. Names are not case sensitive.</p>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
                       <tree-view :data="exampleCatResponse" :options="{maxDepth: 3, link: true}"></tree-view>
@@ -61,14 +63,16 @@
         <div class="row">
           <div class="col docs-subheader">
               <h5><a href='#goodies' id='goodies' class="anchor-link">Goodies</a></h5>
-              <p>Returns data for goodies, or items that can be purchased in the game. There is an endpoint for all goodies and an endpoint that returns goodies by id or by name. Valid ids are between 1-185. Names are not case sensitive. See <a href="https://nekoatsume.fandom.com/wiki/Goodies">Neko Atsume wiki</a> for more info on goodies.</p>
+              <p>Returns data for goodies, or items that can be purchased in the game. See <a href="https://nekoatsume.fandom.com/wiki/Goodies">Neko Atsume wiki</a> for more info on goodies.</p>
               <h6>GET /goodies </h6>
+              <p> This endpoint lists all goodies.</p>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
                       <tree-view :data="goodies" :options="{maxDepth: 3, link: true}"></tree-view>
                   </div>
               </div>
               <h6>GET /goodies/{id or name}</h6>
+              <p> This endpoint returns a goody for a given id or name. Valid ids are between 1-185. Names are not case sensitive.</p>
               <div class="row json">
                   <div class="col scrollbar-y border mx-3 mb-3">
                       <tree-view :data="exampleGoodyResponse" :options="{maxDepth: 3, link: true}"></tree-view>
