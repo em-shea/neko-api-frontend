@@ -177,6 +177,8 @@ export default {
 }
 .test-options-btn {
   padding: 0;
+  border: none;
+  vertical-align: baseline;
 }
 .input-group-mobile .input-group-text {
   width: 100%
@@ -203,11 +205,4 @@ export default {
     display: flex;
   }
 }
-@media(min-width:992px){
-
-}
-@media(min-width:1200px){
-
-}
-
 </style>
