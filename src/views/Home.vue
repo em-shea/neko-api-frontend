@@ -112,7 +112,7 @@ export default {
         .then((response) => {
           this.testResponse = response.data
         }).catch((error) => {
-          this.testResponse = 'Request failed.'
+          this.testResponse = error.response.data
           console.log(error)
         })
     },
@@ -124,7 +124,7 @@ export default {
         .then((response) => {
           this.allCats = response.data
         }).catch((error) => {
-          this.allCats = 'Request failed.'
+          this.allCats = error.response.data
           console.log(error)
         })
     },
@@ -136,7 +136,7 @@ export default {
         .then((response) => {
           this.allGoodies = response.data
         }).catch((error) => {
-          this.allGoodies = 'Request failed.'
+          this.allGoodies = error.response.data
           console.log(error)
         })
     },
